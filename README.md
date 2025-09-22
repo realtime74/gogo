@@ -2,6 +2,20 @@
 
 gogo is a command-line tool that allows you to quickly navigate to frequently used directories. It keeps track of your directory usage and provides an easy way to jump to them using a simple interface.
 
+## Installation
+
+1.  Install gogo
+
+    ```bash
+    go install github.com/realtime74/gogo@latest
+    ```
+
+2. Add this function to your shell configuration file (e.g., `~/.bashrc`, `~/.zshrc`):
+
+    ```bash
+    function gg() { cd $(gogo $1) }
+    ```
+
 ## Usage
 
 ```bash
@@ -12,3 +26,4 @@ gogo [pattern|+|-|~]
    jump to the home directory
 - `+`: Add current directory to the list of frequently used directories
 - `-`: Jump to the previous directory (cd -)
+
