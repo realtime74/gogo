@@ -1,5 +1,1 @@
-function gg() {
-    path="$(gogo $1)"
-    cd $path 
-}
-
+function gg() { cd $(gogo $1) }
