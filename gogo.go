@@ -13,7 +13,7 @@ type GogoFile struct {
 	file *os.File
 }
 
-func (g *GogoFile) Init() string {
+func (g *GogoFile) Init() {
 	hd, err := os.UserHomeDir()
 	if err != nil {
 		panic(err)
@@ -24,6 +24,7 @@ func (g *GogoFile) Init() string {
 	if err != nil {
 		panic(err)
 	}
+	return
 }
 
 func (g *GogoFile) Append(dir string) {
