@@ -16,6 +16,13 @@ gogo is a command-line tool that allows you to quickly navigate to frequently us
     function gg() { cd $(gogo $1) }
     ```
 
+## FUDs
+
+FUDs (Frequently Used Directories) are stored in a file located at `~/.gogo`.
+
+Each line in the file represents a directory,
+with the most frequently used directories at the top.
+
 ## Usage
 
 ```bash
