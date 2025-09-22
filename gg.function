@@ -1,5 +1,5 @@
 function gg() {
-    path="$(go run ~/_projects/gogo/gogo.go $1)"
+    path="$(gogo $1)"
     cd $path 
 }
 
