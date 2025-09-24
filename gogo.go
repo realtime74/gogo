@@ -4,11 +4,13 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"os/exec"
 	"strings"
 )
 
 type GogoFile struct {
 	Home string
+	Path string
 
 	file *os.File
 }
@@ -19,8 +21,8 @@ func (g *GogoFile) Init() {
 		panic(err)
 	}
 	g.Home = hd
-	fp := hd + "/.gogo"
-	g.file, err = os.OpenFile(fp, os.O_RDWR|os.O_CREATE, 0755)
+	g.Path = hd + "/.gogo"
+	g.file, err = os.OpenFile(g.Path, os.O_RDWR|os.O_CREATE, 0755)
 	if err != nil {
 		panic(err)
 	}
@@ -60,6 +62,19 @@ func (g *GogoFile) Close() {
 	}
 }
 
+func _edit(file GogoFile) {
+	editor := os.Getenv("EDITOR")
+	if editor == "" {
+		editor = "vi"
+	}
+	fmt.Println("Opening", file.Path, "with", editor)
+	cmd := exec.Command(editor, file.Path)
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	cmd.Run()
+}
+
 func main() {
 	file := GogoFile{}
 	defer func() {
@@ -78,6 +93,9 @@ func main() {
 	}
 	pattern := os.Args[1]
 	switch pattern {
+	case "-e":
+		_edit(file)
+		return
 	case "~":
 		fmt.Println(file.Home)
 		return

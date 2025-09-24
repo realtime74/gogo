@@ -1,0 +1,2 @@
+- [ ] add `gogo -h` to show help
+- [x] add `gogo -e` to open favourites file

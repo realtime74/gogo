@@ -1,1 +1,7 @@
-function gg() { cd $(gogo $1) }
+function gg() {
+    if [[ $1 == "-e" ]]; then
+        gogo -e
+        return;
+    fi;
+    cd $(gogo $1)
+}
